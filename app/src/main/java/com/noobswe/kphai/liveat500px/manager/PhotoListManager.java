@@ -130,5 +130,4 @@ public class PhotoListManager {
         dao = new Gson().fromJson(json, PhotoItemCollectionDao.class);
     }
 
-
 }

@@ -2,9 +2,11 @@ package com.noobswe.kphai.liveat500px.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.noobswe.kphai.liveat500px.R;
+import com.noobswe.kphai.liveat500px.dao.PhotoItemDAO;
 import com.noobswe.kphai.liveat500px.fragment.MoreInfoFragment;
 
 public class MoreInfoActivity extends AppCompatActivity {
@@ -16,9 +18,11 @@ public class MoreInfoActivity extends AppCompatActivity {
 
         initInstances();
 
+        PhotoItemDAO dao = getIntent().getParcelableExtra("dao");
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentContainer, MoreInfoFragment.newInstance())
+                    .add(R.id.contentContainer, MoreInfoFragment.newInstance(dao))
                     .commit();
         }
 
@@ -28,6 +32,7 @@ public class MoreInfoActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

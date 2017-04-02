@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.noobswe.kphai.liveat500px.R;
+import com.noobswe.kphai.liveat500px.dao.PhotoItemDAO;
 
 
 /**
@@ -16,14 +17,17 @@ import com.noobswe.kphai.liveat500px.R;
 @SuppressWarnings("unused")
 public class PhotoInfoFragment extends Fragment {
 
+    PhotoItemDAO dao;
+
     public PhotoInfoFragment() {
         super();
     }
 
     @SuppressWarnings("unused")
-    public static PhotoInfoFragment newInstance() {
+    public static PhotoInfoFragment newInstance(PhotoItemDAO dao) {
         PhotoInfoFragment fragment = new PhotoInfoFragment();
         Bundle args = new Bundle();
+        args.putParcelable("dao", dao);
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,6 +36,8 @@ public class PhotoInfoFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init(savedInstanceState);
+
+        dao = getArguments().getParcelable("dao");
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
